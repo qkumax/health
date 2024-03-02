@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Медицинский центр</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f0f0f0;
+                color: #333;
+                margin: 20px;
+            }
+            .container1, .container2 {
+                border-radius: 20px;
+                max-width: 600px;
+                margin: auto;
+                margin-top: 20px;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .quote {
+                font-style: italic;
+            }
+            .author {
+                text-align: right;
+                margin-top: 20px;
+            }
+            .navbar {
+                background-color: #333;
+                border-radius: 30px;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 20px;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .nav-links {
+                list-style-type: none;
+                padding: 0;
+                display: flex;
+                margin: 0;
+            }
+            .nav-links li {
+                margin: 0 10px; 
+            }
+            .nav-links li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 10px 15px;
+                text-decoration: none;
+                border-radius: 50px;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            .nav-links li a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+            @media screen and (max-width: 600px) {
+                .nav-links {
+                    flex-direction: column;
+                }
+                .nav-links li {
+                    margin: 5px 0;
+                }
+                .navbar {
+                    padding: 20px;
+                }
+            }
+            .logout-button {
+                background: none;
+                font-size: 16px;
+                color: white;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 50px; 
+                font-family: 'Arial', sans-serif; 
+                cursor: pointer;
+                transition: background-color 0.3s, color 0.3s; 
+            }
+            .logout-button:hover {
+                background-color: #ddd;
+                color: black;
+            }
+            canvas {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="navbar">
+                <ul class="nav-links">
+                    <li><a href="/home">Main</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><form action="/logout" method="POST"><button type="submit" class="logout-button">Log Out</button></form></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container1">
+            <h1>About our medical center</h1>
+            <p>We provide a full range of medical services...</p>
+        </div>
+        <div class="container2">
+            <h2>Our Statistics </h2>
+            <canvas id="healthChart"></canvas>
+        </div>
+        <script>
+            const healthData = {
+                labels: ["January", "February", "March", "April"],
+                datasets: [{
+                    label: 'Number of visits',
+                    data: [50, 60, 70, 80],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            const ctx = document.getElementById('healthChart').getContext('2d');
+            const healthChart = new Chart(ctx, {
+                type: 'line',
+                data: healthData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

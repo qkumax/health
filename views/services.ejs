@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши услуги</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            border-radius: 20px;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        nav .navbar {
+            background-color: #333;
+            border-radius: 30px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        nav ul.nav-links {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+        }
+        nav ul.nav-links li {
+            margin: 0 10px; 
+        }
+        nav ul.nav-links li a, .logout-button {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav ul.nav-links li a:hover, .logout-button:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        @media screen and (max-width: 600px) {
+            nav ul.nav-links {
+                flex-direction: column;
+            }
+            nav ul.nav-links li {
+                margin: 5px 0;
+            }
+            nav .navbar {
+                padding: 20px;
+            }
+        }
+
+        .logout-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+            body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    border-radius: 20px;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+h1, h2 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+select, input[type="date"], input[type="submit"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Serv</h1>
+    <nav>
+        <div class="navbar">
+            <ul class="nav-links">
+                <li><a href="/home">Main</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><form action="/logout" method="POST"><button type="submit" class="logout-button">Log Out</button></form></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <p>Our main medical services include:</p>
+        <ul>
+            <li>Cardiology</li>
+            <li>Pediatrics</li>
+            <li>Neurology</li>
+            <li>Orthopedics</li>
+        </ul>
+
+        <h2>Doctors List</h2>
+        <ul>
+            <% doctors.forEach(function(doctor) { %>
+                <li><%= doctor.name %> - Specialty: <%= doctor.major %></li>
+            <% }) %>
+        </ul>
+        
+    
+        
+        <h2>Запись к врачу</h2>
+        <form action="/appointments" method="post">
+            <div>
+                <label for="doctor">Select a Doctor:</label>
+                <select name="doctor" id="doctor" required>
+                    <% doctors.forEach(function(doctor) { %>
+                        <option value="<%= doctor._id %>"><%= doctor.name %> - <%= doctor.specialty %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div>
+                <label for="date">Выберите дату:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            
+            <input type="submit" value="Записаться">
+        </form>
+    </div>
+</body>
+</html>
